@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 class Lesson9 : BaseUiTest() {
     @Test
     @DisplayName("Проверка открытия qa.guru")
-    //@Disabled("Необходимо в BaseUiTest раскомментировать настройки для WebDriver")
+    @Disabled("Необходимо в BaseUiTest раскомментировать настройки для WebDriver")
     fun testOpenGoogle() {
         openBrowser()
         val title = Selenide.title()
