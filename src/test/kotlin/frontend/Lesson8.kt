@@ -15,7 +15,7 @@ class Lesson8 : BaseUiTest() {
     @DisplayName("Проверка названия на главной странице")
     fun testHeaderTitle() {
         val title = MainPage()
-            .header()
+            .navigateHeader()
             .getHeaderTitle()
 
         title shouldBe "Brew & Bean"
@@ -34,7 +34,7 @@ class Lesson8 : BaseUiTest() {
     @DisplayName("Проверка перехода на страницу Products")
     fun testNavigation() {
         MainPage()
-            .header()
+            .navigateHeader()
             .clickLink("Products")
         val productsTitle = ProductsPage()
             .getTitle()
@@ -46,7 +46,7 @@ class Lesson8 : BaseUiTest() {
     @DisplayName("Проверка количества товаров на странице Products")
     fun testProductsCards() {
         MainPage()
-            .header()
+            .navigateHeader()
             .clickLink("Products")
         val products = ProductsPage()
             .getProducts()
@@ -58,7 +58,7 @@ class Lesson8 : BaseUiTest() {
     @DisplayName("Проверка названия проекта на странице контактов")
     fun testNameProject() {
         MainPage()
-            .header()
+            .navigateHeader()
             .clickLink("Contact")
         val nameProject = ContactPage()
             .getNameProject()

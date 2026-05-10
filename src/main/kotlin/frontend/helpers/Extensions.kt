@@ -14,3 +14,5 @@ class Extensions {
         }
     }
 }
+
+fun String.toPrice() = filter { it.isDigit() }.toFloat() / 100f

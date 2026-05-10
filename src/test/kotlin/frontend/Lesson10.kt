@@ -1,6 +1,6 @@
 package frontend
 
-import frontend.components.AuthPopup
+import frontend.components.popup.AuthPopup
 import frontend.components.HeaderComponent
 import frontend.helpers.BaseUiTest
 import frontend.pages.MainPage
@@ -18,7 +18,7 @@ class Lesson10 : BaseUiTest() {
     @ValueSource(strings = ["Products, Orders, Contact, Cart"])
     @DisplayName("Проверка наличия ссылок в хедере")
     fun testWithValueSource(link: String) {
-        val listLinks = MainPage().header().getHeaderLinks()
+        val listLinks = MainPage().navigateHeader().getHeaderLinks()
 
         listLinks shouldNotContainAnyOf linkedSetOf()
     }
@@ -35,7 +35,7 @@ class Lesson10 : BaseUiTest() {
     @DisplayName("Проверка ошибок в форме авторизации")
     fun testAuthErrors(email: String, password: String, expectedError: String) {
         MainPage()
-            .header()
+            .navigateHeader()
             .clickLink("Join")
         val error = AuthPopup()
             .clickLink()
@@ -50,7 +50,7 @@ class Lesson10 : BaseUiTest() {
     @DisplayName("Проверка работы авторизации")
     fun testAuthUser(): Unit {
         MainPage()
-            .header()
+            .navigateHeader()
             .clickLink("Join")
         AuthPopup()
             .clickLink()

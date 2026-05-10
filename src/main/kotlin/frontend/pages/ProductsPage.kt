@@ -3,13 +3,16 @@ package frontend.pages
 import com.codeborne.selenide.ElementsCollection
 import com.codeborne.selenide.Selenide.element
 import com.codeborne.selenide.Selenide.elements
-import frontend.helpers.Wrappers.Companion.byDataTestGroup
-import frontend.helpers.Wrappers.Companion.byDataTestId
+import frontend.components.list.ProductItem
+import frontend.components.list.ProductsItems
+import frontend.helpers.Wrappers.Companion.byTestGroup
+import frontend.helpers.Wrappers.Companion.byTestId
 import io.qameta.allure.Step
 
 class ProductsPage {
-    private val txtTitle get() = element(byDataTestId("products-title"))
-    private val listItems get() = elements(byDataTestGroup("product-card"))
+    private val txtTitle get() = element(byTestId("products-title"))
+    private val listItems get() = elements(byTestGroup("product-card"))
+
 
     @Step("Получить название страницы")
     fun getTitle(): String {
@@ -17,7 +20,7 @@ class ProductsPage {
     }
 
     @Step("Получить список товаров")
-    fun getProducts(): ElementsCollection {
-        return listItems
+    fun getProducts(): List<ProductItem> {
+        return ProductsItems(listItems).getItems()
     }
 }

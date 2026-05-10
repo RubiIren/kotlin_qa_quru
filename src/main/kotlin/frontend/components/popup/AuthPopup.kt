@@ -1,17 +1,17 @@
-package frontend.components
+package frontend.components.popup
 
 import com.codeborne.selenide.Condition.visible
 import com.codeborne.selenide.Selectors.shadowCss
 import com.codeborne.selenide.Selenide.element
-import frontend.helpers.Wrappers.Companion.byDataTestId
+import frontend.helpers.Wrappers.Companion.byTestId
 import io.qameta.allure.Step
 
 class AuthPopup {
-    private val linkAuth get() = element(byDataTestId("create-login"))
-    private val inputEmail get() = element(byDataTestId("login-email")).find(shadowCss("input"))
-    private val inputPassword get() = element(byDataTestId("login-password")).find(shadowCss("input"))
-    private val txtError get() = element(byDataTestId("login-error"))
-    private val btnLogin get() = element(byDataTestId("login-submit"))
+    private val linkAuth get() = element(byTestId("create-login"))
+    private val inputEmail get() = element(byTestId("login-email")).find(shadowCss("input"))
+    private val inputPassword get() = element(byTestId("login-password")).find(shadowCss("input"))
+    private val txtError get() = element(byTestId("login-error"))
+    private val btnLogin get() = element(byTestId("login-submit"))
 
     @Step("Нажать на ссылку для авторизации")
     fun clickLink(): AuthPopup {
