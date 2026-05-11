@@ -14,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(TestsWatcher::class)
 class Lesson12 : BaseUiTest() {
+
     @Test
     @DisplayName("Проверка падения теста")
     fun testNavigationError() {
