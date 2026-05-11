@@ -17,17 +17,6 @@ class Lesson11 : BaseUiTest() {
             .open()
             .getPopularProducts()
             .first()
-            .let { product ->
-                ProductItem(
-                    name = product.name,
-                    description = product.description,
-                    price = product.price,
-                    image = product.image,
-                    btnDecrement = product.btnDecrement,
-                    quantity = product.quantity,
-                    btnIncrement = product.btnIncrement
-                )
-            }
 
         MainPage()
             .navigateHeader()

@@ -32,6 +32,7 @@ class CartTest : BaseUiTest() {
         firstPopularItem.image shouldBe firstCartItem.image
         firstPopularItem.price shouldBe firstCartItem.price
 
+        //игнорирование параметров
         firstPopularItem.shouldBeEqualToDifferentTypeIgnoringFields(
             firstCartItem,
             ProductItem::description,
