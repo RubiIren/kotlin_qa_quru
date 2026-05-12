@@ -1,5 +1,6 @@
 package general
 
+import backend.api.extension.Extensions.Companion.getAsObject
 import backend.controllers.Controllers
 import backend.helpers.AuthorizationHelper
 import backend.helpers.GarbageCollector
@@ -39,16 +40,22 @@ class TestListener : Controllers(), TestExecutionListener {
         GarbageCollector.user.forEach { id ->
             users.deleteUserById(token = authHelper.getAdminToken(), id = id).also { println("Deleted User: $id") }
         }
+        users.getAllUsers(token = authHelper.getAdminToken(), offset = 4, limit = 50).getAsObject().forEach { user ->
+            if (user.email.contains("@test.com")) {
+                users.deleteUserById(token = authHelper.getAdminToken(), id = user.id)
+                    .also { println("Удалены пользователи с @test.com") }
+            }
+        }
     }
 
-    @Attachment(value = "{name}", type = "image/png")
-    fun attachScreenshot(name: String = "SCREENSHOT"): ByteArray? {
-        return Screenshots.takeScreenShotAsFile()?.readBytes()
-    }
+        @Attachment(value = "{name}", type = "image/png")
+        fun attachScreenshot(name: String = "SCREENSHOT"): ByteArray? {
+            return Screenshots.takeScreenShotAsFile()?.readBytes()
+        }
 
-    @Attachment(value = "{name}.html", type = "text/html")
-    fun savePageSource(name: String = "Page-Source"): ByteArray? =
-        Selenide.element(By.tagName("html"))
-            ?.getAttribute("outerHTML")
-            ?.toByteArray()
-}
+        @Attachment(value = "{name}.html", type = "text/html")
+        fun savePageSource(name: String = "Page-Source"): ByteArray? =
+            Selenide.element(By.tagName("html"))
+                ?.getAttribute("outerHTML")
+                ?.toByteArray()
+    }
