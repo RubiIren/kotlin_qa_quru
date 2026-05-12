@@ -12,5 +12,4 @@ class ContactPage {
     fun getNameProject(): String {
         return txtNameProject.text
     }
-
 }
