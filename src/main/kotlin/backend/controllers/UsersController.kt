@@ -19,12 +19,12 @@ class UsersController : Endpoints() {
     }
 
     @Step("Get user with id: {id}")
-    fun getUserById(token: String, id: Int): Response<CreateUserResponse> {
+    fun getUserById(token: String = authHelper.getAdminToken(), id: Int): Response<CreateUserResponse> {
         return users.getUserById(token, id).execute()
     }
 
     @Step("Delete user with id: {id}")
-    fun deleteUserById(token: String, id: Int): Response<ResponseBody> {
+    fun deleteUserById(token: String = authHelper.getAdminToken(), id: Int): Response<ResponseBody> {
         return users.deleteUserById(token, id).execute()
     }
 
