@@ -1,10 +1,15 @@
 package backend.users
 
 import backend.api.extension.Extensions.Companion.getAsObject
+import backend.api.models.users.AllUserResponse
 import backend.api.models.users.UpdateRequest
+import backend.api.models.users.UpdateResponse
 import backend.api.models.users.defaultUser
 import backend.controllers.Controllers
+import backend.helpers.GarbageCollector.user
 import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.equality.shouldBeEqualToComparingFields
+import io.kotest.matchers.equality.shouldBeEqualToIgnoringFields
 import io.kotest.matchers.equals.shouldBeEqual
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
@@ -34,7 +39,7 @@ class UsersTests : Controllers() {
 
         val updateRequest = UpdateRequest(
             username = "test",
-            email = "test-6975@test.com",
+            email = "test-697@test.com",
             password = "test123",
             phoneNumber = "897415894"
         )
@@ -42,11 +47,11 @@ class UsersTests : Controllers() {
 
         val login = auth.login(email = updateRequest.email!!, password = updateRequest.password!!).getAsObject()
 
-        login.accessToken.length shouldBeGreaterThan 10
-        updatedUser.phoneNumber shouldBe updateRequest.phoneNumber
-        updatedUser.email shouldBe updateRequest.email
-        updatedUser.phoneNumber shouldBe updateRequest.phoneNumber
+        val expectedUser = users.getUserById(id = user.id)
 
+        login.accessToken.length shouldBeGreaterThan 10
+
+        expectedUser shouldBeEqualToComparingFields updatedUser
     }
 
     @Test
@@ -78,14 +83,15 @@ class UsersTests : Controllers() {
         val allUsers = users.getAllUsers(limit = 5).getAsObject()
 
         println(allUsers)
-        allUsers shouldBe 5
+        allUsers.size shouldBe 5
     }
 
     @Test
     @DisplayName("Проверка вывода определенных записей")
     fun testGetAllUsersOffset() {
-        val allUsers = users.getAllUsers(offset = 8-10).getAsObject()
+        val allUsers = users.getAllUsers(offset = 4).getAsObject()
 
         println(allUsers)
+       allUsers.size shouldBe 1
     }
 }
