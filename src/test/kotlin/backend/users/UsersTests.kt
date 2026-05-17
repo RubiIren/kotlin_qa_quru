@@ -1,15 +1,11 @@
 package backend.users
 
 import backend.api.extension.Extensions.Companion.getAsObject
-import backend.api.models.users.AllUserResponse
 import backend.api.models.users.UpdateRequest
-import backend.api.models.users.UpdateResponse
 import backend.api.models.users.defaultUser
 import backend.controllers.Controllers
-import backend.helpers.GarbageCollector.user
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
-import io.kotest.matchers.equality.shouldBeEqualToIgnoringFields
 import io.kotest.matchers.equals.shouldBeEqual
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
@@ -92,6 +88,6 @@ class UsersTests : Controllers() {
         val allUsers = users.getAllUsers(offset = 4).getAsObject()
 
         println(allUsers)
-       allUsers.size shouldBe 1
+        allUsers.size shouldBe 1
     }
 }

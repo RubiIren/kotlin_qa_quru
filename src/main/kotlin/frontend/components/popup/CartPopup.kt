@@ -20,7 +20,7 @@ class CartPopup {
     }
 
     @Step("Получить общую стоимость товаров в корзине")
-    fun getTotalPrice(): Float {
+    fun getTotalPrice(): Double {
         return txtTotalPrice.text.toPrice()
     }
 }

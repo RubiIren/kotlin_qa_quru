@@ -1,6 +1,8 @@
 package backend.controllers
 
 open class Controllers {
-    protected val auth get() = AuthController()
-    protected val users get() = UsersController()
+
+    val auth get() = AuthController()
+    val users get() = UsersController()
+    val products get() = ProductsController()
 }

@@ -1,10 +1,8 @@
 package frontend
 
-import frontend.components.list.ProductItem
 import frontend.helpers.BaseUiTest
 import frontend.pages.MainPage
 import frontend.pages.ProductsPage
-import general.Config
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -24,7 +22,7 @@ class Lesson11 : BaseUiTest() {
             .clickLink("Products")
 
         val catalogProducts = ProductsPage()
-            .getProducts()
+            .getProductsAsObjects()
             .first()
 
         catalogProducts.name shouldBe popularProducts.name

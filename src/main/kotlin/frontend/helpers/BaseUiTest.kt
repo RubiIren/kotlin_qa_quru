@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide
 import general.TestListener
 import general.TestsWatcher
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 

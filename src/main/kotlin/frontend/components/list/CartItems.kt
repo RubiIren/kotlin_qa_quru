@@ -27,8 +27,8 @@ class CartItems(val items: ElementsCollection) {
 data class CartItem(
     val image: SelenideElement,
     val name: String,
-    val price: Float,
-    val totalPrice: Float,
+    val price: Double,
+    val totalPrice: Double,
     val btnIncrement: SelenideElement,
     val btnDecrement: SelenideElement,
     val btnDeleteItem: SelenideElement,
