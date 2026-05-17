@@ -9,6 +9,7 @@ import backend.helpers.ProductsHelper
 import frontend.helpers.BaseUiTest
 import frontend.pages.MainPage
 import frontend.pages.ProductsPage
+import io.kotest.assertions.AssertionErrorBuilder.Companion.fail
 import io.kotest.matchers.shouldBe
 import io.qameta.allure.Feature
 import io.qameta.allure.Story
@@ -81,9 +82,9 @@ class ProductsTest : BaseUiTest() {
             .getProductsAsObjects()
             .filter { it.name.contains(searchName, ignoreCase = true) }
 
-        products.size shouldBe backendProducts.size
+        backendProducts.size shouldBe products.size
         println("Найдено продуктов с '$searchName' в названии:")
-        println("Бэкенд: ${backendProducts}")
+        println("Бэкенд: ${backendProducts.size}")
         println("UI: ${products.size}")
     }
 }
